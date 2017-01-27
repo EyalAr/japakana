@@ -1,0 +1,27 @@
+{
+  "name": "japanese-kana",
+  "version": "0.0.0",
+  "description": "Memorize the Japanese Kana",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eyal Arubas <eyalarubas@gmail.com>",
+  "license": "ISC",
+  "devDependencies": {
+    "html-webpack-plugin": "^2.26.0",
+    "webpack": "^1.14.0"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.22.0",
+    "immutable": "^3.8.1",
+    "react": "^15.4.2",
+    "react-dom": "^15.4.2",
+    "react-router": "^3.0.2",
+    "react-router-redux": "^4.0.7",
+    "react-tap-event-plugin": "^2.0.1",
+    "redux": "^3.6.0",
+    "redux-devtools-extension": "^1.0.0",
+    "redux-logger": "^2.7.4"
+  }
+}

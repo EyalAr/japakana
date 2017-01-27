@@ -1,0 +1,60 @@
+.standard-mq(@minw, @maxw, @rules) {
+  @media
+  only screen and (min-width: @minw) and (max-width: @maxw) {
+    @rules();
+  }
+}
+
+.mobile(@rules) {
+  .standard-mq(0px, 530px, @rules);
+}
+
+.tablet(@rules) {
+  .standard-mq(531px, 1024px, @rules);
+}
+
+.desktop(@rules) {
+  .standard-mq(1025px, 999999px, @rules);
+}
+
+:global {
+  .desktop-only {
+    visibility: visible;
+    .mobile({
+      visibility: hidden;
+      display: none !important;
+    });
+    .tablet({
+      visibility: hidden;
+      display: none !important;
+    });
+  }
+
+  .mobile-only {
+    visibility: visible;
+    .desktop({
+      visibility: hidden;
+      display: none !important;
+    });
+    .tablet({
+      visibility: hidden;
+      display: none !important;
+    });
+  }
+
+  .touch-only {
+    visibility: visible;
+    .desktop({
+      visibility: hidden;
+      display: none !important;
+    });
+  }
+
+  .no-mobile {
+    visibility: visible;
+    .mobile({
+      visibility: hidden;
+      display: none !important;
+    });
+  }
+}
