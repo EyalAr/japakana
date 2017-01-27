@@ -32,6 +32,30 @@ class KanaTable {
   forEachCol (cb) {
     for (var i = 0 ; i < this.cols ; i++) cb(this.getCol(i), i)
   }
+
+  map (mapper) {
+    const res = []
+    this.forEach((e, row, col) => {
+      res.push(mapper(e, row, col))
+    })
+    return res
+  }
+
+  mapRows (mapper) {
+    const res = []
+    this.forEachRow((row, i) => {
+      res.push(mapper(row, i))
+    })
+    return res
+  }
+
+  mapCols (mapper) {
+    const res = []
+    this.forEachCol((col, i) => {
+      res.push(mapper(col, i))
+    })
+    return res
+  }
 }
 
 export default KanaTable
