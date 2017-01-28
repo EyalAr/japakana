@@ -2,7 +2,7 @@ import Entry from "./entry"
 
 const transform = table => table.map(e => new Entry(e ? e... : null))
 
-class KanaTable {
+class Table {
   constructor (table, rows, cols) {
     this.table = transform(table)
     this.rows = rows
@@ -58,4 +58,4 @@ class KanaTable {
   }
 }
 
-export default KanaTable
+export default Table

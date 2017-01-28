@@ -10,7 +10,7 @@ class Entry {
   }
 
   match (candidate) {
-    return this.alts.indexOf(candidate) !== -1
+    return this.alts.indexOf(candidate.toLowerCase()) !== -1
   }
 }
 
