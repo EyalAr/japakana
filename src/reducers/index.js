@@ -1,10 +1,12 @@
 import { routerReducer } from "react-router-redux"
 import * as toggleRow from "./toggleRow"
 import * as toggleCol from "./toggleCol"
+import * as toggleEntry from "./toggleEntry"
 
 const REDUCERS = [
   toggleRow,
-  toggleCol
+  toggleCol,
+  toggleEntry
 ]
 
 export default (state, action) => {

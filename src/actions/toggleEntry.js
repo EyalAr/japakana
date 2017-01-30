@@ -1,4 +1,4 @@
 export default (table, row, col) => ({
-  type: "TOGGLE_Entry",
+  type: "TOGGLE_ENTRY",
   table, row, col
 })

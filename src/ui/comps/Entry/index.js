@@ -4,19 +4,23 @@ import style from "./style.less"
 
 const cx = classnames.bind(style)
 
-const Entry = props => {
+const Entry = ({ entry, selected, toggle }) => {
   return (
-    props.entry.empty ?
-      <div className={cx("container")}></div> :
-      <div className={cx("container")}>
-        <div className={cx("hiragana")}>
-          { props.entry.hiragana }
-        </div>
-        <div className={cx("katakana")}>
-          { props.entry.katakana }
-        </div>
-        <div className={cx("romaji")}>
-          { props.entry.romaji }
+    entry.empty ?
+      <div className={cx("container")}>&nbsp;</div> :
+      <div className={cx("container", "clickable", { selected })} onClick={toggle}>
+        <div className={cx("wrapper")}>
+          <div className={cx("kana")}>
+            <div className={cx("hiragana")}>
+              { entry.hiragana }
+            </div>
+            <div className={cx("katakana")}>
+              { entry.katakana }
+            </div>
+          </div>
+          <div className={cx("romaji")}>
+            { entry.romaji }
+          </div>
         </div>
       </div>
   )

@@ -1,13 +1,38 @@
-@entry-width: 3rem;
+@entry-width: 4.5rem;
+@entry-height: 4.5rem;
 @entry-margin: 0.3rem;
 
 .container {
   width: @entry-width;
+  height: @entry-height;
   display: inline-block;
   text-align: center;
   margin: @entry-margin;
+  overflow: hidden;
+  font-size: 1.5rem;
+}
+
+.wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 .hiragana, .katakana {
   display: inline-block;
+}
+
+.hiragana {
+  margin-right: 0.5rem;
+}
+
+.selected {
+  background: #eee;
+}
+
+.clickable {
+  cursor: pointer;
 }
