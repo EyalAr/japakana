@@ -4,12 +4,24 @@
   "description": "Memorize the Japanese Kana",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "NODE_ENV=development ./node_modules/.bin/webpack"
   },
   "author": "Eyal Arubas <eyalarubas@gmail.com>",
   "license": "ISC",
   "devDependencies": {
+    "babel": "^6.5.2",
+    "babel-core": "^6.22.1",
+    "babel-loader": "^6.2.10",
+    "babel-plugin-transform-object-rest-spread": "^6.22.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-react": "^6.22.0",
+    "classnames": "^2.2.5",
+    "css-loader": "^0.26.1",
     "html-webpack-plugin": "^2.26.0",
+    "less": "^2.7.2",
+    "less-loader": "^2.2.3",
+    "react-redux": "^5.0.2",
+    "style-loader": "^0.13.1",
     "webpack": "^1.14.0"
   },
   "dependencies": {

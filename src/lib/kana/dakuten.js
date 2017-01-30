@@ -1,4 +1,4 @@
-import KanaTable from "../KanaTable"
+import Table from "../Table"
 
 const ROWS = 5
 const COLS = 4
@@ -11,4 +11,6 @@ const table = [
   ["bo", "ぼ", "ボ"], ["do", "ど", "ド"]         , ["zo", "ぞ", "ゾ"]          , ["go", "ご", "ゴ"]
 ]
 
-export default new KanaTable(table, ROWS, COLS)
+export default new Table(table, ROWS, COLS)
+export ROWS;
+export COLS;

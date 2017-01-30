@@ -9,7 +9,7 @@ const App = props => {
   return (
     <div className={cx("container")}>
       <div className={cx("menu")}>
-        <Link to="/select">All Posts</Link>
+        <Link to="/select">Select</Link>
         <Link to="/practice">Practice</Link>
         <Link to="/report">Report</Link>
         <Link to="/settings">Settings</Link>

@@ -1,6 +1,6 @@
 import Entry from "./entry"
 
-const transform = table => table.map(e => new Entry(e ? e... : null))
+const transform = table => table.map(e => e ? new Entry(...e) : new Entry(null))
 
 class Table {
   constructor (table, rows, cols) {
@@ -22,7 +22,7 @@ class Table {
   }
 
   forEach (cb) {
-    this.table.forEach((e, i) => cb(e, Math.floor(i / this.cols), i % this.cols))
+    this.table.forEach((e, i) => cb(e, Math.floor(i / this.cols), i % this.cols, i))
   }
 
   forEachRow (cb) {
@@ -35,8 +35,8 @@ class Table {
 
   map (mapper) {
     const res = []
-    this.forEach((e, row, col) => {
-      res.push(mapper(e, row, col))
+    this.forEach((e, row, col, i) => {
+      res.push(mapper(e, row, col, i))
     })
     return res
   }
