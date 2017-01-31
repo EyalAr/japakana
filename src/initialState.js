@@ -13,7 +13,7 @@ export default {
     settings: settings || {
       timer: false,
       multichoice: false,
-      mode: "both",
+      mode: "hiragana",
       enter: false
     },
     stats: stats || {

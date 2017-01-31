@@ -29,6 +29,8 @@ const Select = props => {
             <Entry
               key={i}
               entry={e}
+              showHiragana={props.showHiragana}
+              showKatakana={props.showKatakana}
               selected={props.selectedMain.indexOf(i) !== -1}
               toggle={() => props.toggleMain(row, col)}/>
           )).vals }
@@ -49,6 +51,8 @@ const Select = props => {
             <Entry
               key={i}
               entry={e}
+              showHiragana={props.showHiragana}
+              showKatakana={props.showKatakana}
               selected={props.selectedDakuten.indexOf(i) !== -1}
               toggle={() => props.toggleDakuten(row, col)}/>
           )).vals }
@@ -69,6 +73,8 @@ const Select = props => {
             <Entry
               key={i}
               entry={e}
+              showHiragana={props.showHiragana}
+              showKatakana={props.showKatakana}
               selected={props.selectedHandakuten.indexOf(i) !== -1}
               toggle={() => props.toggleHandakuten(row, col)}/>
           )).vals }
