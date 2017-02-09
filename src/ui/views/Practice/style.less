@@ -1,0 +1,49 @@
+@import (reference) "../../comps/entry/style.less";
+
+@entry-container-width: @entry-width + 2 * @entry-margin;
+@entry-container-height: @entry-height + 2 * @entry-margin;
+@main-kana-cols: 11;
+@dakuten-cols: 4;
+@handakuten-cols: 1;
+@rows: 5;
+
+.container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.wrapper {
+  width: (@main-kana-cols + @dakuten-cols + @handakuten-cols) * @entry-container-width + 3rem;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.mainKanaContainer {
+  width: @main-kana-cols * @entry-container-width;
+  height: (@rows + 1) * @entry-container-height;
+  display: inline-block;
+}
+
+.dakutenContainer {
+  width: @dakuten-cols * @entry-container-width;
+  height: (@rows + 1) * @entry-container-height;
+  display: inline-block;
+  margin: 0 1.5rem;
+}
+
+.handakutenContainer {
+  width: @handakuten-cols * @entry-container-width;
+  height: (@rows + 1) * @entry-container-height;
+  display: inline-block;
+}
+
+.colSelector {
+  width: @entry-container-width;
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+}

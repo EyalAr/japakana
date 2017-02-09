@@ -11,10 +11,12 @@ const selection = JSON.parse(storage.getItem("selection") || false)
 export default {
   data: fromJS({
     settings: settings || {
-      timer: false,
+      timer: 5000,
       multichoice: false,
-      mode: "hiragana",
-      enter: false
+      mode: "both",
+      waitForEnter: false,
+      successDelay: 1000,
+      failureDelay: 1000
     },
     stats: stats || {
       main: mainKana.map(() => ({})).vals,
@@ -25,6 +27,16 @@ export default {
       main: mainKana.map((e, row, col, i) => e.empty ? null : i).vals.filter(e => e !== null),
       dakuten: dakuten.map((e, row, col, i) => e.empty ? null : i).vals.filter(e => e !== null),
       handakuten: handakuten.map((e, row, col, i) => e.empty ? null : i).vals.filter(e => e !== null)
+    },
+    practice: {
+      pending: false, // waiting for user input?
+      showSuccess: false,
+      showFailure: false,
+      entry: null,
+      showHint: false,
+      showAnswer: false,
+      timeLeft: false,
+      answer: ""
     }
   }).withMutations(data => {
     // convert selection lists to sets (fromJS converts arrays to lists)

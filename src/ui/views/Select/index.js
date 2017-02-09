@@ -1,5 +1,4 @@
 import React from "react"
-import { Link } from "react-router"
 import classnames from "classnames/bind"
 import mainKana from "../../../lib/kana"
 import dakuten from "../../../lib/kana/dakuten"
