@@ -30,6 +30,7 @@ const Select = props => {
               entry={e}
               showHiragana={props.showHiragana}
               showKatakana={props.showKatakana}
+              showRomaji={true}
               selected={props.selectedMain.indexOf(i) !== -1}
               toggle={() => props.toggleMain(row, col)}/>
           )).vals }
@@ -52,6 +53,7 @@ const Select = props => {
               entry={e}
               showHiragana={props.showHiragana}
               showKatakana={props.showKatakana}
+              showRomaji={true}
               selected={props.selectedDakuten.indexOf(i) !== -1}
               toggle={() => props.toggleDakuten(row, col)}/>
           )).vals }
@@ -74,6 +76,7 @@ const Select = props => {
               entry={e}
               showHiragana={props.showHiragana}
               showKatakana={props.showKatakana}
+              showRomaji={true}
               selected={props.selectedHandakuten.indexOf(i) !== -1}
               toggle={() => props.toggleHandakuten(row, col)}/>
           )).vals }

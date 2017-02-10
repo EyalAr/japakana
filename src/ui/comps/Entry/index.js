@@ -4,7 +4,7 @@ import style from "./style.less"
 
 const cx = classnames.bind(style)
 
-const Entry = ({ entry, selected, toggle, showHiragana, showKatakana }) => {
+const Entry = ({ entry, selected, toggle, showHiragana, showKatakana, showRomaji }) => {
   return (
     entry.empty ?
       <div className={cx("container")}>&nbsp;</div> :
@@ -22,9 +22,11 @@ const Entry = ({ entry, selected, toggle, showHiragana, showKatakana }) => {
               </div>
             }
           </div>
-          <div className={cx("romaji")}>
-            { entry.romaji }
-          </div>
+          { showRomaji &&
+            <div className={cx("romaji")}>
+              { entry.romaji }
+            </div>
+          }
         </div>
       </div>
   )

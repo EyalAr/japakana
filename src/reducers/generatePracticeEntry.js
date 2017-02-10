@@ -17,5 +17,10 @@ export const run = (data, action) => {
       next = getRandomElement(candidates)
     }
   }
-  return data.setIn(["practice", "entry"], next)
+  return data
+    .setIn(["practice", "entry"], next)
+    .setIn(["practice", "showSuccess"], false)
+    .setIn(["practice", "showFailure"], false)
+    .setIn(["practice", "pending"], true)
+    .setIn(["practice", "answer"], "")
 }

@@ -11,12 +11,14 @@ const selection = JSON.parse(storage.getItem("selection") || false)
 export default {
   data: fromJS({
     settings: settings || {
-      timer: 5000,
+      timer: false,
       multichoice: false,
       mode: "both",
       waitForEnter: false,
       successDelay: 1000,
-      failureDelay: 1000
+      failureDelay: 1000,
+      clearAnswerAfterFailure: true,
+      retryAfterFailure: false
     },
     stats: stats || {
       main: mainKana.map(() => ({})).vals,
@@ -33,7 +35,6 @@ export default {
       showSuccess: false,
       showFailure: false,
       entry: null,
-      showHint: false,
       showAnswer: false,
       timeLeft: false,
       answer: ""

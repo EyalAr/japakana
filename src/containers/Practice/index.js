@@ -2,8 +2,8 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import generatePracticeEntry from "../../actions/generatePracticeEntry"
 import resetPractice from "../../actions/resetPractice"
-import submitAnswer from "../../actions/submitAnswer"
-import updateAnswer from "../../actions/updateAnswer"
+import submitAnswerAction from "../../actions/submitAnswer"
+import updateAnswerAction from "../../actions/updateAnswer"
 import decreaseTimeLeft from "../../actions/decreaseTimeLeft"
 import PracticeUI from "../../ui/views/Practice"
 
@@ -51,11 +51,14 @@ class PracticeContainer extends Component {
         updateAnswer={this.props.updateAnswer}
         skip={() => this.props.submitAnswer(null)}
         timeLeft={this.props.timeLeft}
+        pending={this.props.pending}
         showSuccess={this.props.showSuccess}
         showFailure={this.props.showFailure}
         showHiragana={this.props.showHiragana}
         showKatakana={this.props.showKatakana}
-        entry={this.props.entry}/>
+        waitForEnter={this.props.waitForEnter}
+        entry={this.props.entry}
+        answer={this.props.answer}/>
     )
   }
 }
@@ -69,10 +72,12 @@ const mapStateToProps = (state, props) => {
   const entry = data.getIn(["practice", "entry"])
   const showSuccess = data.getIn(["practice", "showSuccess"])
   const showFailure = data.getIn(["practice", "showFailure"])
+  const showAnswer = data.getIn(["practice", "showAnswer"])
   const timeLeft = data.getIn(["practice", "timeLeft"])
   const answer = data.getIn(["practice", "answer"])
   const successDelay = data.getIn(["settings", "successDelay"])
   const failureDelay = data.getIn(["settings", "failureDelay"])
+  const waitForEnter = data.getIn(["settings", "waitForEnter"])
   return {
     showHiragana,
     showKatakana,
@@ -80,20 +85,22 @@ const mapStateToProps = (state, props) => {
     entry,
     showSuccess,
     showFailure,
+    showAnswer,
     timeLeft,
     answer,
     successDelay,
-    failureDelay
+    failureDelay,
+    waitForEnter
   }
 }
 
 const mapDispatchToProps = dispatch => {
   const next = () => dispatch(generatePracticeEntry())
   const reset = () => dispatch(resetPractice())
-  const timeUp = () => dispatch(submitAnswer(null))
+  const timeUp = () => dispatch(submitAnswerAction(null))
   const tick = by => dispatch(decreaseTimeLeft(by))
-  const submitAnswer = answer => dispatch(submitAnswer(answer))
-  const updateAnswer = answer => dispatch(updateAnswer(answer))
+  const submitAnswer = answer => dispatch(submitAnswerAction(answer))
+  const updateAnswer = answer => dispatch(updateAnswerAction(answer))
   return {
     next,
     reset,
