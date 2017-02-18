@@ -13,12 +13,12 @@ export default {
     settings: settings || {
       timer: false,
       multichoice: false,
-      mode: "both",
+      mode: "hiragana",
       waitForEnter: false,
       successDelay: 1000,
       failureDelay: 1000,
       clearAnswerAfterFailure: true,
-      retryAfterFailure: false
+      retryAfterFailure: true
     },
     stats: stats || {
       main: mainKana.map(() => ({})).vals,

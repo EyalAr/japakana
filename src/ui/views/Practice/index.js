@@ -50,22 +50,27 @@ class Practice extends Component {
     return (
       <div className={cx("container")}>
         <div className={cx("wrapper")}>
-          { props.entry &&
-            <Entry
-              entry={props.entry}
-              showHiragana={props.showHiragana}
-              showKatakana={props.showKatakana}
-              showRomaji={props.showAnswer}
-              selected={false}
-              toggle={() => {}}/>
-          }
+          <div className={cx("entryWrapper", {
+              success: props.showSuccess,
+              failure: props.showFailure
+            })}>
+            { props.entry &&
+              <Entry
+                className={cx("entry")}
+                entry={props.entry}
+                showHiragana={props.showHiragana}
+                showKatakana={props.showKatakana}
+                showRomaji={props.showAnswer}
+                selected={false}
+                toggle={() => {}}/>
+            }
+          </div>
           <input
+            className={cx("input")}
             type="text"
             value={this.state.answer}
             onKeyUp={this.onKeyUp}
             onChange={this.onChange}/>
-          { props.showSuccess && <span>success</span> }
-          { props.showFailure && <span>failure</span> }
         </div>
       </div>
     )

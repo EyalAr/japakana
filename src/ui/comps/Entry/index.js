@@ -4,11 +4,14 @@ import style from "./style.less"
 
 const cx = classnames.bind(style)
 
-const Entry = ({ entry, selected, toggle, showHiragana, showKatakana, showRomaji }) => {
+const Entry = ({
+  entry, selected, toggle, showHiragana,
+  showKatakana, showRomaji, className
+}) => {
   return (
     entry.empty ?
-      <div className={cx("container")}>&nbsp;</div> :
-      <div className={cx("container", "clickable", { selected })} onClick={toggle}>
+      <div className={cx("container", className)}>&nbsp;</div> :
+      <div className={cx("container", "clickable", { selected }, className)} onClick={toggle}>
         <div className={cx("wrapper")}>
           <div className={cx("kana")}>
             { showHiragana &&
