@@ -15,8 +15,8 @@ export default {
       multichoice: false,
       mode: "hiragana",
       waitForEnter: false,
-      successDelay: 1000,
-      failureDelay: 1000,
+      successDelay: 500,
+      failureDelay: 500,
       clearAnswerAfterFailure: true,
       retryAfterFailure: true
     },

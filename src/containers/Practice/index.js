@@ -5,6 +5,8 @@ import resetPractice from "../../actions/resetPractice"
 import submitAnswerAction from "../../actions/submitAnswer"
 import updateAnswerAction from "../../actions/updateAnswer"
 import decreaseTimeLeft from "../../actions/decreaseTimeLeft"
+import toggleAnswerAction from "../../actions/toggleAnswer"
+import toggleFailureOffAction from "../../actions/toggleFailureOff"
 import PracticeUI from "../../ui/views/Practice"
 
 class PracticeContainer extends Component {
@@ -34,6 +36,9 @@ class PracticeContainer extends Component {
           this.t = setTimeout(() => nextProps.tick(100), delay)
         }
       }
+      if (nextProps.showFailure) {
+        setTimeout(nextProps.toggleFailureOff, nextProps.failureDelay)
+      }
     } else {
       if (nextProps.showSuccess) {
         setTimeout(nextProps.next, nextProps.successDelay)
@@ -58,7 +63,8 @@ class PracticeContainer extends Component {
         showKatakana={this.props.showKatakana}
         waitForEnter={this.props.waitForEnter}
         entry={this.props.entry}
-        answer={this.props.answer}/>
+        answer={this.props.answer}
+        toggleAnswer={this.props.toggleAnswer}/>
     )
   }
 }
@@ -97,17 +103,21 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = dispatch => {
   const next = () => dispatch(generatePracticeEntry())
   const reset = () => dispatch(resetPractice())
-  const timeUp = () => dispatch(submitAnswerAction(null))
+  const timeUp = () => dispatch(submitAnswerAction(""))
   const tick = by => dispatch(decreaseTimeLeft(by))
   const submitAnswer = answer => dispatch(submitAnswerAction(answer))
   const updateAnswer = answer => dispatch(updateAnswerAction(answer))
+  const toggleAnswer = () => dispatch(toggleAnswerAction(true))
+  const toggleFailureOff = () => dispatch(toggleFailureOffAction())
   return {
     next,
     reset,
     timeUp,
     tick,
     submitAnswer,
-    updateAnswer
+    updateAnswer,
+    toggleAnswer,
+    toggleFailureOff
   }
 }
 

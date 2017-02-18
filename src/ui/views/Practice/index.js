@@ -62,7 +62,7 @@ class Practice extends Component {
                 showKatakana={props.showKatakana}
                 showRomaji={props.showAnswer}
                 selected={false}
-                toggle={() => {}}/>
+                toggle={props.toggleAnswer}/>
             }
           </div>
           <input

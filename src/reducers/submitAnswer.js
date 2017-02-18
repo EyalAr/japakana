@@ -9,4 +9,5 @@ export const run = (data, action) => {
     .setIn(["practice", "showSuccess"], success)
     .setIn(["practice", "showFailure"], !success)
     .setIn(["practice", "pending"], !success && retryAfterFailure)
+    .setIn(["practice", "answer"], !success && clearAnswerAfterFailure ? "" : action.answer)
 }
