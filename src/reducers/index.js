@@ -5,6 +5,7 @@ import * as generatePracticeEntry from "./generatePracticeEntry"
 import * as updateAnswer from "./updateAnswer"
 import * as submitAnswer from "./submitAnswer"
 import * as toggleFailureOff from "./toggleFailureOff"
+import * as setSettings from "./setSettings"
 
 const REDUCERS = [
   toggleCol,
@@ -12,7 +13,8 @@ const REDUCERS = [
   generatePracticeEntry,
   updateAnswer,
   submitAnswer,
-  toggleFailureOff
+  toggleFailureOff,
+  setSettings
 ]
 
 export default (state, action) => {

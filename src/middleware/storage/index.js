@@ -7,6 +7,7 @@ const save = (section, data) => {
 const storageActions = {
   "TOGGLE_COL": save.bind(null, "selection"),
   "TOGGLE_ENTRY": save.bind(null, "selection"),
+  "SET_SETTINGS": save.bind(null, "settings"),
 }
 
 export default store => next => action => {
