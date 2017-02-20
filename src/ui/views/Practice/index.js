@@ -28,8 +28,6 @@ class Practice extends Component {
     if (props.timer) this.t = setInterval(() => {
       if (this.state.timeLeft > 0) {
         this.setState({ timeLeft: this.state.timeLeft - 100 })
-      } else {
-        this.setState({ timeLeft: props.timer })
       }
     }, 100)
   }

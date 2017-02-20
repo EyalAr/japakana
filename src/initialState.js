@@ -11,12 +11,12 @@ const selection = JSON.parse(storage.getItem("selection") || false)
 export default {
   data: fromJS({
     settings: settings || {
-      timer: false,
+      timer: 6000,
       multichoice: false,
       mode: "hiragana",
       waitForEnter: false,
-      successDelay: 500,
-      failureDelay: 500,
+      successDelay: 200,
+      failureDelay: 200,
       clearAnswerAfterFailure: true,
       retryAfterFailure: true,
       allowRevealAnswer: true
