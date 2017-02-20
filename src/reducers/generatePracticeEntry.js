@@ -18,9 +18,11 @@ export const run = (data, action) => {
     }
   }
   return data
+    .setIn(["practice", "timeUp"], false)
     .setIn(["practice", "entry"], next)
     .setIn(["practice", "showSuccess"], false)
     .setIn(["practice", "showFailure"], false)
+    .setIn(["practice", "showAnswer"], false)
     .setIn(["practice", "pending"], true)
     .setIn(["practice", "answer"], "")
 }

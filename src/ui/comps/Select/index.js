@@ -4,16 +4,16 @@ import style from "./style.less"
 
 const cx = classnames.bind(style)
 
-const Select = ({ children, value, onChange, options }) => {
+const Select = ({ children, value, onChange, options, className }) => {
   return (
-    <div className={cx("container")}>
-      {children}
+    <div className={cx("container", className)}>
+      <span className={cx("title")}>{children}</span>
       { Object.keys(options).map((label, i) => (
-        <div key={i} className={cx("option")} onClick={() => onChange(options[label])}>
+        <span key={i} className={cx("option")} onClick={() => onChange(options[label])}>
           <i className="material-icons">{
             options[label] === value ? "check_box" : "check_box_outline_blank"
-          }</i> {label}
-        </div>
+          }</i>{label}
+        </span>
       )) }
     </div>
   )

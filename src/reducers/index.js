@@ -6,6 +6,8 @@ import * as updateAnswer from "./updateAnswer"
 import * as submitAnswer from "./submitAnswer"
 import * as toggleFailureOff from "./toggleFailureOff"
 import * as setSettings from "./setSettings"
+import * as setTimeUp from "./setTimeUp"
+import * as toggleAnswer from "./toggleAnswer"
 
 const REDUCERS = [
   toggleCol,
@@ -14,7 +16,9 @@ const REDUCERS = [
   updateAnswer,
   submitAnswer,
   toggleFailureOff,
-  setSettings
+  setSettings,
+  setTimeUp,
+  toggleAnswer
 ]
 
 export default (state, action) => {

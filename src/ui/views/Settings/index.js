@@ -10,29 +10,84 @@ const Settings = props => {
   return (
     <div className={cx("container")}>
       <Select
+        className={cx("setting")}
+        onChange={props.setKanaMode}
+        value={props.mode}
+        options={{
+          "Hiragana": "hiragana",
+          "Katakana": "katakana",
+          "Both": "both"
+        }}>
+        Kana mode:
+      </Select>
+      <Select
+        className={cx("setting")}
         onChange={props.setMultiChoice}
         value={props.multichoice}
         options={{
           "Text entry": false,
           "Multiple choice": true
         }}>
-        Answer mode
+        Answer mode:
+      </Select>
+      <Select
+        className={cx("setting")}
+        onChange={props.setTimer}
+        value={props.timer}
+        options={{
+          "Disabled": false,
+          "Fast": 2000,
+          "Medium": 4000,
+          "Slow": 6000
+        }}>
+        Countdown:
       </Select>
       <Toggle
+        className={cx("setting")}
         onChange={props.setWaitForEnter}
         value={props.waitForEnter}>
-        waitForEnter
+        Press 'Enter' to submit
       </Toggle>
       <Toggle
+        className={cx("setting")}
         onChange={props.setClearAnswerAfterFailure}
         value={props.clearAnswerAfterFailure}>
-        clearAnswerAfterFailure
+        Clear answer after failure
       </Toggle>
       <Toggle
+        className={cx("setting")}
         onChange={props.setRetryAfterFailure}
         value={props.retryAfterFailure}>
-        retryAfterFailure
+        Retry after failure
       </Toggle>
+      <Toggle
+        className={cx("setting")}
+        onChange={props.setAllowRevealAnswer}
+        value={props.allowRevealAnswer}>
+        Click to show answer
+      </Toggle>
+      <Select
+        className={cx("setting")}
+        onChange={props.setSuccessDelay}
+        value={props.successDelay}
+        options={{
+          "Short": 200,
+          "Medium": 500,
+          "Long": 1000
+        }}>
+        Delay after success:
+      </Select>
+      <Select
+        className={cx("setting")}
+        onChange={props.setFailureDelay}
+        value={props.failureDelay}
+        options={{
+          "Short": 200,
+          "Medium": 500,
+          "Long": 1000
+        }}>
+        Delay after failure:
+      </Select>
     </div>
   )
 }

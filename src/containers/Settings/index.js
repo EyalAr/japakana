@@ -20,6 +20,21 @@ const mapDispatchToProps = dispatch => {
     })),
     setRetryAfterFailure: value => dispatch(setSettingsAction({
       "retryAfterFailure": value
+    })),
+    setKanaMode: value => dispatch(setSettingsAction({
+      "mode": value
+    })),
+    setSuccessDelay: value => dispatch(setSettingsAction({
+      "successDelay": value
+    })),
+    setFailureDelay: value => dispatch(setSettingsAction({
+      "failureDelay": value
+    })),
+    setTimer: value => dispatch(setSettingsAction({
+      "timer": value
+    })),
+    setAllowRevealAnswer: value => dispatch(setSettingsAction({
+      "allowRevealAnswer": value
     }))
   }
 }

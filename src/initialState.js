@@ -18,7 +18,8 @@ export default {
       successDelay: 500,
       failureDelay: 500,
       clearAnswerAfterFailure: true,
-      retryAfterFailure: true
+      retryAfterFailure: true,
+      allowRevealAnswer: true
     },
     stats: stats || {
       main: mainKana.map(() => ({})).vals,
@@ -36,7 +37,7 @@ export default {
       showFailure: false,
       entry: null,
       showAnswer: false,
-      timeLeft: false,
+      timeUp: false,
       answer: ""
     }
   }).withMutations(data => {

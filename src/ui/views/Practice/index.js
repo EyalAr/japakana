@@ -1,11 +1,16 @@
 import React, { Component } from "react"
 import classnames from "classnames/bind"
+import { Circle } from "react-progressbar.js"
 import Entry from "../../comps/Entry"
 import style from "./style.less"
 
 const cx = classnames.bind(style)
 
 const ENTER_KEY_CODE = 13
+const A_KEY_CODE = 65
+const Z_KEY_CODE = 90
+const a_KEY_CODE = 97
+const z_KEY_CODE = 122
 
 const waitForFurthenInput = (possibleAnswers, partialAnswer) => {
   const maxLength = Math.max.apply(Math, possibleAnswers.map(a => a.length))
@@ -17,13 +22,25 @@ const waitForFurthenInput = (possibleAnswers, partialAnswer) => {
 class Practice extends Component {
   constructor (props) {
     super(props)
-    this.state = { answer: "" }
+    this.state = { answer: "", timeLeft: props.timer }
     this.onKeyUp = this.onKeyUp.bind(this)
     this.onChange = this.onChange.bind(this)
+    if (props.timer) this.t = setInterval(() => {
+      if (this.state.timeLeft > 0) {
+        this.setState({ timeLeft: this.state.timeLeft - 100 })
+      } else {
+        this.setState({ timeLeft: props.timer })
+      }
+    }, 100)
   }
 
   onKeyUp (e) {
     if (!this.props.pending) return
+    if (
+      e.keyCode !== ENTER_KEY_CODE &&
+      !(e.keyCode >= A_KEY_CODE && e.keyCode <= Z_KEY_CODE) &&
+      !(e.keyCode >= a_KEY_CODE && e.keyCode <= z_KEY_CODE)
+    ) return
     if (
       e.keyCode === ENTER_KEY_CODE ||
       (
@@ -41,12 +58,23 @@ class Practice extends Component {
     if (this.props.pending) this.setState({ answer: e.target.value })
   }
 
+  componentWillUnmount () {
+    if (this.t) clearInterval(this.t)
+    delete this.t
+  }
+
   componentWillReceiveProps (nextProps) {
-    if (!nextProps.answer) this.setState({ answer: "" })
+    if (!nextProps.answer) {
+      this.setState({ answer: "" })
+    }
+    if (!nextProps.pending) {
+      this.setState({ timeLeft: nextProps.timer })
+    }
   }
 
   render () {
     const props = this.props
+    const progress = props.timer ? this.state.timeLeft / props.timer : 1
     return (
       <div className={cx("container")}>
         <div className={cx("wrapper")}>
@@ -62,7 +90,13 @@ class Practice extends Component {
                 showKatakana={props.showKatakana}
                 showRomaji={props.showAnswer}
                 selected={false}
-                toggle={props.toggleAnswer}/>
+                toggle={() => props.toggleAnswer(!props.showAnswer)}/>
+            }
+            { props.timer &&
+              <Circle
+                containerClassName={cx("circle")}
+                progress={progress}
+                options={{ duration: progress === 1 ? 0 : 200 }}/>
             }
           </div>
           <input

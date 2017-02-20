@@ -4,9 +4,9 @@ import style from "./style.less"
 
 const cx = classnames.bind(style)
 
-const Toggle = ({ children, value, onChange }) => {
+const Toggle = ({ children, value, onChange, className }) => {
   return (
-    <div className={cx("container")} onClick={() => onChange(!value)}>
+    <div className={cx("container", className)} onClick={() => onChange(!value)}>
       <i className="material-icons">{
         value ? "check_box" : "check_box_outline_blank"
       }</i>

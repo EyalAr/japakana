@@ -7,6 +7,7 @@ import updateAnswerAction from "../../actions/updateAnswer"
 import decreaseTimeLeft from "../../actions/decreaseTimeLeft"
 import toggleAnswerAction from "../../actions/toggleAnswer"
 import toggleFailureOffAction from "../../actions/toggleFailureOff"
+import setTimeUpAction from "../../actions/setTimeUp"
 import PracticeUI from "../../ui/views/Practice"
 
 class PracticeContainer extends Component {
@@ -26,20 +27,19 @@ class PracticeContainer extends Component {
 
   componentWillReceiveProps (nextProps) {
     if (nextProps.pending) {
-      if (nextProps.timeLeft !== false) {
-        if (nextProps.timeLeft <= 0) {
-          nextProps.timeUp()
-        } else {
-          const now = Date.now()
-          const delay = Math.max(100 - (now - (this.prevTick || now)), 0)
-          this.prevTick = now
-          this.t = setTimeout(() => nextProps.tick(100), delay)
-        }
+      if (nextProps.timer && !this.t) {
+        this.t = setTimeout(() => {
+          nextProps.setTimeUp(true)
+          nextProps.submitAnswer(null)
+          delete this.t
+        }, nextProps.timer)
       }
       if (nextProps.showFailure) {
         setTimeout(nextProps.toggleFailureOff, nextProps.failureDelay)
       }
     } else {
+      if (this.t) clearTimeout(this.t)
+      delete this.t
       if (nextProps.showSuccess) {
         setTimeout(nextProps.next, nextProps.successDelay)
       }
@@ -55,12 +55,14 @@ class PracticeContainer extends Component {
         submitAnswer={this.props.submitAnswer}
         updateAnswer={this.props.updateAnswer}
         skip={() => this.props.submitAnswer(null)}
-        timeLeft={this.props.timeLeft}
+        timer={this.props.timer}
+        timeUp={this.props.timeUp}
         pending={this.props.pending}
         showSuccess={this.props.showSuccess}
         showFailure={this.props.showFailure}
         showHiragana={this.props.showHiragana}
         showKatakana={this.props.showKatakana}
+        showAnswer={this.props.showAnswer}
         waitForEnter={this.props.waitForEnter}
         entry={this.props.entry}
         answer={this.props.answer}
@@ -79,11 +81,12 @@ const mapStateToProps = (state, props) => {
   const showSuccess = data.getIn(["practice", "showSuccess"])
   const showFailure = data.getIn(["practice", "showFailure"])
   const showAnswer = data.getIn(["practice", "showAnswer"])
-  const timeLeft = data.getIn(["practice", "timeLeft"])
   const answer = data.getIn(["practice", "answer"])
+  const timeUp = data.getIn(["practice", "timeUp"])
   const successDelay = data.getIn(["settings", "successDelay"])
   const failureDelay = data.getIn(["settings", "failureDelay"])
   const waitForEnter = data.getIn(["settings", "waitForEnter"])
+  const timer = data.getIn(["settings", "timer"])
   return {
     showHiragana,
     showKatakana,
@@ -92,27 +95,28 @@ const mapStateToProps = (state, props) => {
     showSuccess,
     showFailure,
     showAnswer,
-    timeLeft,
     answer,
     successDelay,
     failureDelay,
-    waitForEnter
+    waitForEnter,
+    timer,
+    timeUp
   }
 }
 
 const mapDispatchToProps = dispatch => {
   const next = () => dispatch(generatePracticeEntry())
   const reset = () => dispatch(resetPractice())
-  const timeUp = () => dispatch(submitAnswerAction(""))
+  const setTimeUp = timeUp => dispatch(setTimeUpAction(timeUp))
   const tick = by => dispatch(decreaseTimeLeft(by))
   const submitAnswer = answer => dispatch(submitAnswerAction(answer))
   const updateAnswer = answer => dispatch(updateAnswerAction(answer))
-  const toggleAnswer = () => dispatch(toggleAnswerAction(true))
+  const toggleAnswer = show => dispatch(toggleAnswerAction(show))
   const toggleFailureOff = () => dispatch(toggleFailureOffAction())
   return {
     next,
     reset,
-    timeUp,
+    setTimeUp,
     tick,
     submitAnswer,
     updateAnswer,
