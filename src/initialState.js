@@ -19,7 +19,8 @@ export default {
       failureDelay: 200,
       clearAnswerAfterFailure: true,
       retryAfterFailure: true,
-      allowRevealAnswer: true
+      allowRevealAnswer: true,
+      alwaysShowAnswer: false
     },
     stats: stats || {
       main: mainKana.map(() => ({})).vals,

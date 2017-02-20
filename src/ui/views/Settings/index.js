@@ -64,7 +64,13 @@ const Settings = props => {
         className={cx("setting")}
         onChange={props.setAllowRevealAnswer}
         value={props.allowRevealAnswer}>
-        Click to show answer
+        Click to show/hide answer
+      </Toggle>
+      <Toggle
+        className={cx("setting")}
+        onChange={props.setAlwaysShowAnswer}
+        value={props.alwaysShowAnswer}>
+        Answer visible by default
       </Toggle>
       <Select
         className={cx("setting")}

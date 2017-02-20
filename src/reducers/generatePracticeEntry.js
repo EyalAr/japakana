@@ -4,6 +4,7 @@ import getRandomElement from "./helpers/getRandomElement"
 export const ACTION_NAME = "GENERATE_PRACTICE_ENTRY"
 
 export const run = (data, action) => {
+  const alwaysShowAnswer = data.getIn(["settings", "alwaysShowAnswer"])
   const selectedMain = data.getIn(["selection", "main"]).toJS().map(i => tables.main.getByIndex(i))
   const selectedDakuten = data.getIn(["selection", "dakuten"]).toJS().map(i => tables.dakuten.getByIndex(i))
   const selectedHandakuten = data.getIn(["selection", "handakuten"]).toJS().map(i => tables.handakuten.getByIndex(i))
@@ -22,7 +23,7 @@ export const run = (data, action) => {
     .setIn(["practice", "entry"], next)
     .setIn(["practice", "showSuccess"], false)
     .setIn(["practice", "showFailure"], false)
-    .setIn(["practice", "showAnswer"], false)
+    .setIn(["practice", "showAnswer"], alwaysShowAnswer)
     .setIn(["practice", "pending"], true)
     .setIn(["practice", "answer"], "")
 }

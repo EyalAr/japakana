@@ -35,6 +35,9 @@ const mapDispatchToProps = dispatch => {
     })),
     setAllowRevealAnswer: value => dispatch(setSettingsAction({
       "allowRevealAnswer": value
+    })),
+    setAlwaysShowAnswer: value => dispatch(setSettingsAction({
+      "alwaysShowAnswer": value
     }))
   }
 }
