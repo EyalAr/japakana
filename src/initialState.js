@@ -37,6 +37,8 @@ export default {
       showSuccess: false,
       showFailure: false,
       entry: null,
+      entryTable: "",
+      entryIndex: -1,
       showAnswer: false,
       timeUp: false,
       answer: ""
