@@ -1,6 +1,7 @@
 import { connect } from "react-redux"
 import SettingsUI from "../../ui/views/Settings"
 import setSettingsAction from "../../actions/setSettings"
+import clearHistoryAction from "../../actions/clearHistory"
 
 const mapStateToProps = (state, props) => {
   const data = state.data
@@ -38,7 +39,8 @@ const mapDispatchToProps = dispatch => {
     })),
     setAlwaysShowAnswer: value => dispatch(setSettingsAction({
       "alwaysShowAnswer": value
-    }))
+    })),
+    clearHistory: () => dispatch(clearHistoryAction())
   }
 }
 

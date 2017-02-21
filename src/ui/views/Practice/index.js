@@ -75,7 +75,21 @@ class Practice extends Component {
     const progress = props.timer ? this.state.timeLeft / props.timer : 1
     return (
       <div className={cx("container")}>
-        <div className={cx("wrapper")}>
+        <div className={cx("circlesWrapper")}>
+          <div className={cx("statsWrapper")}>
+            <div className={cx("statsNumbers")}>
+              <div className={cx("statsSuccessCount")}>
+                {props.successCount}
+              </div>
+              <div className={cx("statsAttemptsCount")}>
+                {props.attemptsCount}
+              </div>
+            </div>
+            <Circle
+              containerClassName={cx("statsCircle")}
+              progress={props.attemptsCount ? props.successCount / props.attemptsCount : 1}
+              options={{ duration: 200, color: "#919191" }}/>
+          </div>
           <div className={cx("entryWrapper", {
               success: props.showSuccess,
               failure: props.showFailure
@@ -97,13 +111,27 @@ class Practice extends Component {
                 options={{ duration: progress === 1 ? 0 : 200 }}/>
             }
           </div>
-          <input
-            className={cx("input")}
-            type="text"
-            value={this.state.answer}
-            onKeyUp={this.onKeyUp}
-            onChange={this.onChange}/>
+          <div className={cx("entryStatsWrapper")}>
+            <div className={cx("entryStatsNumbers")}>
+              <div className={cx("entryStatsSuccessCount")}>
+                {props.entrySuccessCount}
+              </div>
+              <div className={cx("entryStatsAttemptsCount")}>
+                {props.entryAttemptsCount}
+              </div>
+            </div>
+            <Circle
+              containerClassName={cx("entryStatsCircle")}
+              progress={props.entryAttemptsCount ? props.entrySuccessCount / props.entryAttemptsCount : 1}
+              options={{ duration: 200, color: "#919191" }}/>
+          </div>
         </div>
+        <input
+          className={cx("input")}
+          type="text"
+          value={this.state.answer}
+          onKeyUp={this.onKeyUp}
+          onChange={this.onChange}/>
       </div>
     )
   }

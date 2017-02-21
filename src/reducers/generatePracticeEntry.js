@@ -26,7 +26,7 @@ export const run = (data, action) => {
   if (candidates.length < 2) {
     next = candidates[0] || null
   } else {
-    while (next.entry === current.entry) {
+    while (!next || (current && next.entry === current.entry)) {
       next = getRandomElement(candidates)
     }
   }

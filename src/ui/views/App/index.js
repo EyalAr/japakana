@@ -20,6 +20,9 @@ const App = props => {
       <div className={cx("body")}>
         {props.children}
       </div>
+      <div className={cx("footer")}>
+        © 2017 <a href="https://github.com/EyalAr/japakana">Japakana!</a> by <a href="https://www.linkedin.com/in/eyalarubas">Eyal Arubas</a>. <a href="https://github.com/EyalAr/japakana/blob/master/LICENSE">MIT License</a>.
+      </div>
     </div>
   )
 }

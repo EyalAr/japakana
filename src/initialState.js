@@ -5,7 +5,7 @@ import dakuten from "./lib/kana/dakuten"
 import handakuten from "./lib/kana/handakuten"
 
 const settings = JSON.parse(storage.getItem("settings") || false)
-const stats = JSON.parse(storage.getItem("stats") || false)
+const history = JSON.parse(storage.getItem("history") || false)
 const selection = JSON.parse(storage.getItem("selection") || false)
 
 export default {
@@ -22,10 +22,10 @@ export default {
       allowRevealAnswer: true,
       alwaysShowAnswer: false
     },
-    stats: stats || {
-      main: mainKana.map(() => ({})).vals,
-      dakuten: dakuten.map(() => ({})).vals,
-      handakuten: handakuten.map(() => ({})).vals
+    history: history || {
+      entries: {},
+      successCount: 0,
+      attemptsCount: 0
     },
     selection: selection || {
       main: mainKana.map((e, row, col, i) => e.empty ? null : i).vals.filter(e => e !== null),

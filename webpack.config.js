@@ -3,16 +3,18 @@ var webpack = require("webpack"),
     path = require("path");
 
 var DEV = process.env.NODE_ENV === "development"
+var GA_TRACKING_ID = process.env.GA_TRACKING_ID
 
 var plugins = [];
 
 plugins.push(new webpack.DefinePlugin({
   __DEV__: DEV,
+  __GA_TRACKING_ID__: JSON.stringify(GA_TRACKING_ID),
   "process.env.NODE_ENV": JSON.stringify(process.env.NODE_ENV || "development")
 }));
 
 plugins.push(new HtmlWebpackPlugin({
-  title: "Kana Practice",
+  title: "Japakana!",
   filename: "index.html",
   template: "./src/index.tpl"
 }))

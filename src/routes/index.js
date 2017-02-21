@@ -3,7 +3,7 @@ import { Route, IndexRedirect } from "react-router"
 import App from "../containers/App"
 import Select from "../containers/Select"
 import Practice from "../containers/Practice"
-// import Report from "../containers/Report"
+import Report from "../containers/Report"
 import Settings from "../containers/Settings"
 
 export default (
@@ -12,7 +12,6 @@ export default (
     <Route path="/select" component={Select}/>
     <Route path="/practice" component={Practice}/>
     <Route path="/settings" component={Settings}/>
+    <Route path="/report" component={Report}/>
   </Route>
 )
-
-// <Route path="/report" component={Report}/>

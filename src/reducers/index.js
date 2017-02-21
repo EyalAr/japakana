@@ -8,6 +8,7 @@ import * as toggleFailureOff from "./toggleFailureOff"
 import * as setSettings from "./setSettings"
 import * as setTimeUp from "./setTimeUp"
 import * as toggleAnswer from "./toggleAnswer"
+import * as clearHistory from "./clearHistory"
 
 const REDUCERS = [
   toggleCol,
@@ -18,7 +19,8 @@ const REDUCERS = [
   toggleFailureOff,
   setSettings,
   setTimeUp,
-  toggleAnswer
+  toggleAnswer,
+  clearHistory
 ]
 
 export default (state, action) => {

@@ -94,6 +94,7 @@ const Settings = props => {
         }}>
         Delay after failure:
       </Select>
+      <div className={cx("button")} onClick={props.clearHistory}><i className="material-icons">delete_sweep</i> Clear stats</div>
     </div>
   )
 }

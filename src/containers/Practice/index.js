@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { connect } from "react-redux"
+import { List } from "immutable"
 import generatePracticeEntry from "../../actions/generatePracticeEntry"
 import resetPractice from "../../actions/resetPractice"
 import submitAnswerAction from "../../actions/submitAnswer"
@@ -66,7 +67,11 @@ class PracticeContainer extends Component {
         waitForEnter={this.props.waitForEnter}
         entry={this.props.entry}
         answer={this.props.answer}
-        toggleAnswer={this.props.toggleAnswer}/>
+        toggleAnswer={this.props.toggleAnswer}
+        entryAttemptsCount={this.props.entryAttemptsCount}
+        entrySuccessCount={this.props.entrySuccessCount}
+        attemptsCount={this.props.attemptsCount}
+        successCount={this.props.successCount}/>
     )
   }
 }
@@ -78,6 +83,13 @@ const mapStateToProps = (state, props) => {
   const showKatakana = mode !== "hiragana"
   const pending = data.getIn(["practice", "pending"])
   const entry = data.getIn(["practice", "entry"])
+  const entryTable = data.getIn(["practice", "entryTable"])
+  const entryIndex = data.getIn(["practice", "entryIndex"])
+  const historyKey = [entryTable, entryIndex].join(":")
+  const entryAttemptsCount = data.getIn(["history", "entries", historyKey, "attemptsCount"], 0)
+  const entrySuccessCount = data.getIn(["history", "entries", historyKey, "successCount"], 0)
+  const attemptsCount = data.getIn(["history", "attemptsCount"], 0)
+  const successCount = data.getIn(["history", "successCount"], 0)
   const showSuccess = data.getIn(["practice", "showSuccess"])
   const showFailure = data.getIn(["practice", "showFailure"])
   const showAnswer = data.getIn(["practice", "showAnswer"])
@@ -100,7 +112,11 @@ const mapStateToProps = (state, props) => {
     failureDelay,
     waitForEnter,
     timer,
-    timeUp
+    timeUp,
+    entryAttemptsCount,
+    entrySuccessCount,
+    attemptsCount,
+    successCount
   }
 }
 
