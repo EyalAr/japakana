@@ -1,1 +1,1 @@
-export default window.sessionStorage
+export default window.localStorage
