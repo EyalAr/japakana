@@ -61,6 +61,10 @@ class Practice extends Component {
     delete this.t
   }
 
+  componentDidMount () {
+    this.answerInput.focus()
+  }
+
   componentWillReceiveProps (nextProps) {
     if (!nextProps.answer) {
       this.setState({ answer: "" })
@@ -68,6 +72,10 @@ class Practice extends Component {
     if (!nextProps.pending) {
       this.setState({ timeLeft: nextProps.timer })
     }
+  }
+
+  componentDidUpdate () {
+    this.answerInput.focus()
   }
 
   render () {
@@ -127,6 +135,7 @@ class Practice extends Component {
           </div>
         </div>
         <input
+          ref={input => this.answerInput = input}
           className={cx("input")}
           type="text"
           value={this.state.answer}
